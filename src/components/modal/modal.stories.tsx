@@ -1,13 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Modal } from './modal';
-import { fn } from '@storybook/test';
+import { useState } from 'react'
+import type { FC } from 'react'
+import type { Meta } from '@storybook/react';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { Button } from '../button';
+import { Modal, ModalProps } from './';
 
 const meta = {
   title: 'Components/Modal',
   component: Modal,
   args: {
-    open: false,
-    onCancel: fn()
+    text: 'Hi, I am a modal',
+    
   },
   argTypes: {
     open: {
@@ -17,11 +20,43 @@ const meta = {
 } satisfies Meta<typeof Modal>;
 
 export default meta;
-type Story = StoryObj<typeof Modal>;
 
-export const OpenModal: Story = {
-  args: {
-    open: true,
-    onCancel: () => console.log('clicked')
+export const OpenModal: FC = (args: ModalProps) => {
+  const [isOpen, setIsOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleOnOpen = () => {
+    setIsOpen(true)
   }
+
+  const handleOnClose = () => {
+    setIsLoading(true)
+    setTimeout(() => {
+      setIsOpen(false)
+      setIsLoading(false)
+    }, 1000);
+  }
+
+  return (
+    <>
+      <Button
+        primary
+        icon={faArrowRight}
+        onClick={handleOnOpen}
+      >
+        Show Modal
+      </Button>
+      <Modal 
+        open={isOpen}
+        text={args.text}
+      >
+        <Button
+          onClick={handleOnClose}
+          loading={isLoading}
+        >
+          Close Modal
+        </Button>
+      </Modal>
+    </>
+  );
 };

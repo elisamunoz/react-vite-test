@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components'
 
 const fadeInAnimation = keyframes`
- 0%   { opacity: 0; margin-top: 20px; }
+ 0%   { opacity: 0; margin-top: 10px; }
  100% { opacity: 1; margin-top: 0; }
 `
 
@@ -17,8 +17,8 @@ export const Root = styled.dialog`
   align-content: center;
   flex-wrap: wrap;
   gap: 20px;
-  background-color: lightgray;
-  color: #3c5556;
+  background-color: #ebe8e7;
+  color: #ea7186;
 
   top: 50%;
   left: 50%;
@@ -29,7 +29,7 @@ export const Root = styled.dialog`
   border: none;
   border-radius: 5px;
 
-  animation: 1s ease-out 0s 1 ${fadeInAnimation};
+  animation: .6s ease-out 0s 1 ${fadeInAnimation};
   animation-fill-mode: forwards;
   &::backdrop {
     background-color: red;

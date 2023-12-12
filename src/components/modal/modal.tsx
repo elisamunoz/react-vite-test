@@ -1,23 +1,17 @@
-import { Root, Text } from "./modal.components"
-import { Button } from '../../stories/Button'
-
-export interface Props {
-  open?: boolean
-  onCancel?: VoidFunction
-}
+import type { PropsWithChildren } from "react"
+import { Root, Text } from "./modal.styles"
+import type { Props } from "./Modal.types"
 
 export const Modal = ({
+  children,
   open = false,
-  onCancel
-}: React.PropsWithChildren<Props>) => {
+  text
+}: PropsWithChildren<Props>) => {
   
-
   return open && (
     <Root open={open}>
-      <Text>Hola yo soy un modal</Text>
-      <Button
-        label="Click me"
-        onClick={onCancel} />
+      <Text>{text}</Text>
+      {children}
     </Root>
   )
 }

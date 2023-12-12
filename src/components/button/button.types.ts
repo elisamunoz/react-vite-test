@@ -1,3 +1,5 @@
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+
 export const BUTTON_SIZES = [
   'small',
   'medium',
@@ -12,11 +14,14 @@ export interface RootProps {
   outline?: boolean
   loading?: boolean
   disabled?: boolean
+  icon?: IconProp
+  iconPosition?: 'right' | 'left' 
 }
 
 export interface TextProps {
   hidden: boolean
 }
 export interface Props extends RootProps {
-  onClick: VoidFunction
+  onClick?: VoidFunction
 }
+

@@ -16,14 +16,18 @@ export const buttonSizes = {
   `,
 }
 
+
 export const Root = styled.button<RootProps>`
+  display: flex;
+  gap: 10px;
   font-size: 16px;
   padding: 0.2em 1em;
 
   color: white;
-  background: aquamarine;
-  border: 1px solid currentcolor;
+  background: #ea7186;
+  border: 1px solid transparent;
   border-radius: 5px;
+  width: fit-content;
   cursor: pointer;
   &:active,
   &:hover {
@@ -31,7 +35,11 @@ export const Root = styled.button<RootProps>`
   }
 
   ${props => props.primary && css`
-    color: blue;
+    background: #7a77b9;
+  `}
+
+  ${props => props.loading && css`
+    pointer-events: none;
   `}
 
   ${props => props.disabled && css`
@@ -40,6 +48,11 @@ export const Root = styled.button<RootProps>`
     border-color: grey;
     pointer-events: none;
   `}
+
+  flex-direction: ${props => props.iconPosition === 'left'
+    ? 'row-reverse'
+    : 'row'
+  };
 
   ${({ size = 'medium' }) => buttonSizes[size]};
 `
